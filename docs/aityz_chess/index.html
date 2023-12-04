@@ -213,7 +213,37 @@ def get_leaderboard() -&gt; Leaderboard:
     response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
     response.raise_for_status()
     data = response.json()
-    return Leaderboard(data)</code></pre>
+    return Leaderboard(data)
+
+def scrape_titled_pgns(title: str, output_file: str) -&gt; None:
+    &#34;&#34;&#34;Scrapes many, many games from every titled player with title (title). Warning: this process will take hours. 
+
+    Args:
+        title (str): The title to check games for.
+        output_file (str): The file to output.
+    &#34;&#34;&#34;
+    profiles = get_titled(title)
+    pgns_final = []
+    for profile in profiles:
+        pgns = get_user_pgns(profile.name)
+        for pgn in pgns:
+            pgns_final.append(pgn)
+    
+    with open(output_file, &#39;w&#39;) as f:
+        for pgn in pgns_final:
+            f.write(pgn + &#39;\n\n&#39;)
+
+def scrape_user_pgns(username: str, output_file: str) -&gt; None:
+    &#34;&#34;&#34;Scrapes all the games from a user.
+
+    Args:
+        username (str): The username of the user.
+        output_file (str): The file to output.
+    &#34;&#34;&#34;
+    pgns = get_user_pgns(username)
+    with open(output_file, &#39;w&#39;) as f:
+        for pgn in pgns:
+            f.write(pgn + &#39;\n\n&#39;)</code></pre>
 </details>
 </section>
 <section>
@@ -613,6 +643,70 @@ def get_leaderboard() -&gt; Leaderboard:
     return PGNGenerator(pgns)</code></pre>
 </details>
 </dd>
+<dt id="aityz_chess.scrape_titled_pgns"><code class="name flex">
+<span>def <span class="ident">scrape_titled_pgns</span></span>(<span>title: str, output_file: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Scrapes many, many games from every titled player with title (title). Warning: this process will take hours. </p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>title</code></strong> :&ensp;<code>str</code></dt>
+<dd>The title to check games for.</dd>
+<dt><strong><code>output_file</code></strong> :&ensp;<code>str</code></dt>
+<dd>The file to output.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def scrape_titled_pgns(title: str, output_file: str) -&gt; None:
+    &#34;&#34;&#34;Scrapes many, many games from every titled player with title (title). Warning: this process will take hours. 
+
+    Args:
+        title (str): The title to check games for.
+        output_file (str): The file to output.
+    &#34;&#34;&#34;
+    profiles = get_titled(title)
+    pgns_final = []
+    for profile in profiles:
+        pgns = get_user_pgns(profile.name)
+        for pgn in pgns:
+            pgns_final.append(pgn)
+    
+    with open(output_file, &#39;w&#39;) as f:
+        for pgn in pgns_final:
+            f.write(pgn + &#39;\n\n&#39;)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.scrape_user_pgns"><code class="name flex">
+<span>def <span class="ident">scrape_user_pgns</span></span>(<span>username: str, output_file: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Scrapes all the games from a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The username of the user.</dd>
+<dt><strong><code>output_file</code></strong> :&ensp;<code>str</code></dt>
+<dd>The file to output.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def scrape_user_pgns(username: str, output_file: str) -&gt; None:
+    &#34;&#34;&#34;Scrapes all the games from a user.
+
+    Args:
+        username (str): The username of the user.
+        output_file (str): The file to output.
+    &#34;&#34;&#34;
+    pgns = get_user_pgns(username)
+    with open(output_file, &#39;w&#39;) as f:
+        for pgn in pgns:
+            f.write(pgn + &#39;\n\n&#39;)</code></pre>
+</details>
+</dd>
 </dl>
 </section>
 <section>
@@ -644,6 +738,8 @@ def get_leaderboard() -&gt; Leaderboard:
 <li><code><a title="aityz_chess.get_tournament_by_id" href="#aityz_chess.get_tournament_by_id">get_tournament_by_id</a></code></li>
 <li><code><a title="aityz_chess.get_tournaments" href="#aityz_chess.get_tournaments">get_tournaments</a></code></li>
 <li><code><a title="aityz_chess.get_user_pgns" href="#aityz_chess.get_user_pgns">get_user_pgns</a></code></li>
+<li><code><a title="aityz_chess.scrape_titled_pgns" href="#aityz_chess.scrape_titled_pgns">scrape_titled_pgns</a></code></li>
+<li><code><a title="aityz_chess.scrape_user_pgns" href="#aityz_chess.scrape_user_pgns">scrape_user_pgns</a></code></li>
 </ul>
 </li>
 </ul>

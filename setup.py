@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='aityz_chess',
-    version='1.1.2',
+    version='1.1.3',
     packages=find_packages(include=['aityz_chess', 'aityz_chess.*']),
     install_requires=[
         'chess',
