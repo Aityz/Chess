@@ -185,3 +185,33 @@ def get_leaderboard() -> Leaderboard:
     response.raise_for_status()
     data = response.json()
     return Leaderboard(data)
+
+def scrape_titled_pgns(title: str, output_file: str) -> None:
+    """Scrapes many, many games from every titled player with title (title). Warning: this process will take hours. 
+
+    Args:
+        title (str): The title to check games for.
+        output_file (str): The file to output.
+    """
+    profiles = get_titled(title)
+    pgns_final = []
+    for profile in profiles:
+        pgns = get_user_pgns(profile.name)
+        for pgn in pgns:
+            pgns_final.append(pgn)
+    
+    with open(output_file, 'w') as f:
+        for pgn in pgns_final:
+            f.write(pgn + '\n\n')
+
+def scrape_user_pgns(username: str, output_file: str) -> None:
+    """Scrapes all the games from a user.
+
+    Args:
+        username (str): The username of the user.
+        output_file (str): The file to output.
+    """
+    pgns = get_user_pgns(username)
+    with open(output_file, 'w') as f:
+        for pgn in pgns:
+            f.write(pgn + '\n\n')
