@@ -1,0 +1,9 @@
+*.png
+test.py
+aityz_cache/*
+*.pyc
+*/__pycache__/*
+aityz_chess.egg-info/*
+build/*
+dist/*
+.vscode/*

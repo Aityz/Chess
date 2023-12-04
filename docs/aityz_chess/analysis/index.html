@@ -1,0 +1,2355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>aityz_chess.analysis API documentation</title>
+<meta name="description" content="Useful Analysis Functions for Aityz Chess library." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>aityz_chess.analysis</code></h1>
+</header>
+<section id="section-intro">
+<p>Useful Analysis Functions for Aityz Chess library.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Useful Analysis Functions for Aityz Chess library.&#34;&#34;&#34;
+
+import json
+import os
+import random
+import re
+from collections import Counter
+
+from ..types import *
+from ..cache import *
+
+import chess.pgn
+import chess.svg
+import chess.engine
+import matplotlib.pyplot as plt
+import requests
+from PIL import Image, ImageDraw, ImageFont
+
+
+USER_AGENT = (&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) &#39;
+              &#39;Chrome/118.0.0.0 Safari/537.36 OPR/104.0.0.0&#39;)
+
+def get_user_pgns(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Gets all the PGNs of a user, using the caching system.
+    
+    Args:
+        username (str): The username of the user.
+        verbose (bool, optional): Whether to print the progress of the fetching. Defaults to False.
+        
+    Returns:
+        PGNGenerator: A PGNGenerator object that can be used to iterate over the PGNs.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/player/{username}/games/archives&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    subsets = response.json()
+    cached = find_subsets()
+    pgns = []
+    
+    for subset in subsets[&#39;archives&#39;]:
+        sanitized_subset = sanitize_url(subset)
+        if verbose:
+            print(f&#39;Fetching Subset {subset} ...!&#39;)
+        if sanitized_subset in cached:
+            data = load_subset(sanitized_subset)
+        else:
+            response = requests.get(subset, headers={&#39;User-Agent&#39;: USER_AGENT})
+            response.raise_for_status()
+            data = response.json()
+            save_subset(data, subset)
+        for game in data[&#39;games&#39;]:
+            try:
+                pgns.append(game[&#39;pgn&#39;])
+            except:
+                pass
+    return PGNGenerator(pgns)
+
+def get_pgns(username: str, verbose: bool = False) -&gt; list:
+    &#34;&#34;&#34;Gets all the PGN formats of games from a user.
+
+    Args:
+        username (str): User to grab games from.
+        verbose (bool, optional): Whether to print out the current subset. Defaults to False.
+
+    Returns:
+        list: A list of PGN formatted strings.
+    &#34;&#34;&#34;
+    return list(get_user_pgns(username, verbose=verbose))
+
+def get_raw_games(username: str, verbose: bool = False) -&gt; list:
+    &#34;&#34;&#34;Gets games of a user in JSON format, with the PGN inside.
+
+    Args:
+        username (str): User to grab games from.
+        verbose (bool, optional): Whether to print out the current subset. Defaults to False.
+
+    Returns:
+        list: A list of JSON formatted games.
+    &#34;&#34;&#34;
+    url = f&#39;https://api.chess.com/pub/player/{username}/games/archives&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    subsets = response.json()
+    cached = find_subsets()
+    games = []
+    for subset in subsets[&#39;archives&#39;]:
+        sanitized_subset = sanitize_url(subset)
+        if verbose:
+            print(f&#39;Fetching Subset {subset} ...!&#39;)
+        if sanitized_subset in cached:
+            data = load_subset(sanitized_subset)
+        else:
+            response = requests.get(subset, headers={&#39;User-Agent&#39;: USER_AGENT})
+            response.raise_for_status()
+            data = response.json()
+            save_subset(data, subset)
+        for game in data[&#39;games&#39;]:
+            try:
+                games.append(game)
+            except:
+                pass
+    return games
+
+def plot_elo(username: str, time_control: str | list, self: bool = True, verbose: bool = False, save_file=None) -&gt; None:
+    &#34;&#34;&#34;Plots the Elo change over time of a user.
+
+    Args:
+        username (str): The user to check.
+        time_control (str | list): Formatted like &#34;300&#34; or &#34;900+10&#34;. The Chess time control to check.
+        self (bool, optional): Whether to plot the user&#39;s Elo or not. When False, will plot the user&#39;s opponent&#39;s Elo ratings. Defaults to True.
+        verbose (bool, optional): Whether to print out which subset it is currently on or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose)
+    elos = []
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;TimeControl&#39;] == time_control:
+            if self:
+                elos.append(int(game.headers[&#39;WhiteElo&#39;]) if username.lower() == game.headers[&#39;White&#39;].lower() else int(game.headers[&#39;BlackElo&#39;]))
+            else:
+                elos.append(int(game.headers[&#39;BlackElo&#39;]) if username.lower() == game.headers[&#39;White&#39;].lower() else int(game.headers[&#39;WhiteElo&#39;]))
+    plt.plot(elos)
+    plt.title(f&#39;{username}\&#39;s {time_control} Time Control Elo Graph!&#39;)
+    if save_file is not None:
+        plt.savefig(save_file)
+    else:
+        plt.show()
+
+def plot_streaks(username, histogram=True, time_control: str = None, verbose: bool = False) -&gt; None:
+    &#34;&#34;&#34;Plots the win streaks held by a user.
+
+    Args:
+        username (_type_): The user to check.
+        histogram (bool, optional): Whether to plot the streaks as a histogram or not. On False, will display as a line graph. Defaults to True.
+        time_control (str, optional): The Time Control to check streaks for. Defaults to None.
+        verbose (bool, optional): Whether to print subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose)
+    streaks = []
+
+    current_streak = 0
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+
+        if time_control is None:
+            if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                if game.headers[&#39;White&#39;].lower() == username.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks.append(current_streak)
+                    current_streak = 0
+            elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                if game.headers[&#39;Black&#39;].lower() == username.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks.append(current_streak)
+                    current_streak = 0
+            else:
+                pass
+        else:
+            if game.headers[&#39;TimeControl&#39;] == time_control:
+                if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                    if game.headers[&#39;White&#39;].lower() == username.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks.append(current_streak)
+                        current_streak = 0
+                elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                    if game.headers[&#39;Black&#39;].lower() == username.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks.append(current_streak)
+                        current_streak = 0
+                
+    if histogram is True:
+        plt.hist(streaks, bins=30)
+        plt.title(f&#39;{username}\&#39;s streaks&#39;)
+        plt.show()
+    else:
+        plt.plot(streaks)
+        plt.title(f&#39;{username}\&#39;s streaks&#39;)
+        plt.show()
+    
+    print(f&#39;Longest Streak was: {max(streaks)}&#39;)
+
+def monte_carlo(whiteElo: int, blackElo: int, games: int) -&gt; None:
+    &#34;&#34;&#34;A Monte Carlo Simulation of Chess.
+
+    Args:
+        whiteElo (int): The white player&#39;s Elo.
+        blackElo (int): The black player&#39;s Elo.
+        games (int): How many games to simulate.
+    &#34;&#34;&#34;
+    results = []
+    win_rate = 1 / (1 + 10 ** ((whiteElo - blackElo) / 400)) * 100
+    for i in range(games):
+        chosen = random.randint(1, 100)
+        if chosen &lt;= win_rate:
+            results.append(0)
+        else:
+            results.append(1)
+    print(f&#39;Simulated {games} games!&#39;)
+    print(f&#39;User 1 ({whiteElo}) vs User 2 ({blackElo})&#39;)
+    print(f&#39;User 1 won {results.count(1)} games!&#39;)
+    print(f&#39;User 2 won {results.count(0)} games!&#39;)
+    print(f&#39;Win Rate was: {int(round(100 - win_rate, 0))}%&#39;)
+
+def concactenate(username: str) -&gt; None:
+    &#34;&#34;&#34;Concatenates all the games of a user into one PGN.
+
+    Args:
+        username (str): The user to create the PGN file for. The file is also named (username).pgn
+    &#34;&#34;&#34;
+    pgns = get_pgns(username)
+    save_file = open(f&#39;{username}.pgn&#39;, &#39;w&#39;)
+    for i in range(len(pgns)):
+        save_file.write(pgns[i])
+        save_file.write(&#39;\n\n&#39;)
+    print(&#39;Done!&#39;)
+
+def plot_time_controls(username, verbose: bool = False, save_file=None) -&gt; None:
+    &#34;&#34;&#34;Plots time controls that the user plays.
+
+    Args:
+        username (_type_): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    controls = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        controls.append(game.headers[&#39;TimeControl&#39;])
+    
+    controls2 = []
+
+    for control in controls:
+        if control == &#39;1/86400&#39;:
+            controls2.append(&#39;Daily&#39;)
+        elif control == &#39;1/1209600&#39;:
+            controls2.append(&#39;Fortnightly&#39;)
+        elif control == &#39;1/604800&#39;:
+            controls2.append(&#39;Weekly&#39;)
+        elif control == &#39;1/259200&#39;:
+            controls2.append(&#39;Tri-Daily&#39;)
+        elif control == &#39;1/172800&#39;:
+            controls2.append(&#39;Bi-Daily&#39;)
+        else:
+            controls2.append(control)
+    
+    counter = Counter(controls2)
+
+    counter = dict(counter)
+
+    plt.bar(list(counter.keys()), list(counter.values()), color = &#39;green&#39;, width=0.4)
+    plt.title(f&#39;{username}\&#39;s Favorite Time Controls&#39;)
+    if save_file is not None:
+        plt.savefig(save_file)
+    else:
+        plt.show()
+
+
+
+def average_elo(username: str, verbose: bool = False, self: bool = True) -&gt; float:
+    &#34;&#34;&#34;Returns the average Elo of a user, or their opponents.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print subsets or not. Defaults to False.
+        self (bool, optional): Whether it is the user&#39;s average Elo, or their opponent&#39;s. Defaults to True.
+
+    Returns:
+        float: Average elo of opponent&#39;s or user.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    elos = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if self is True:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                elos.append(int(game.headers[&#39;WhiteElo&#39;]))
+            else:
+                elos.append(int(game.headers[&#39;BlackElo&#39;]))
+        else:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                elos.append(int(game.headers[&#39;BlackElo&#39;]))
+            else:
+                elos.append(int(game.headers[&#39;WhiteElo&#39;]))
+    
+    return sum(elos) / len(elos)
+
+def plot_hour(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Plots with a bar graph that games are usually played in UTC.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    hours = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        hours.append(f&#39;{game.headers[&#34;StartTime&#34;][0]}{game.headers[&#34;StartTime&#34;][1]}&#39;)
+    
+    hours = Counter(hours)
+    hours = dict(hours)
+    hours = dict(sorted(hours.items()))
+
+    plt.bar(list(hours.keys()), list(hours.values()), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Average Playing Time&#39;)
+    plt.show()
+
+def plot_wdl(username: str, verbose: bool = False, save_file=None):
+    &#34;&#34;&#34;Plots Win/Draw/Loss on a bar graph.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    stats = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                stats.append(&#39;W&#39;)
+            else:
+                stats.append(&#39;L&#39;)
+        elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+            if game.headers[&#39;Black&#39;].lower() == username.lower():
+                stats.append(&#39;W&#39;)
+            else:
+                stats.append(&#39;L&#39;)
+        else:
+            stats.append(&#39;D&#39;)
+    
+    counting = dict(Counter(stats))
+    
+    plt.bar(list(counting.keys()), list(counting.values()), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Win Draw Loss&#39;)
+    if save_file is not None:
+        plt.savefig(save_file)
+    else:
+        plt.show()
+
+def plot_favourite_openings(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Plot&#39;s a users top 5 favourite ECO openings.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subset or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    openings = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        
+        openings.append(game.headers[&#39;ECO&#39;])
+    
+    counter = Counter(openings)
+
+    listing = list(counter)
+
+    options = [
+        listing[0],
+        listing[1],
+        listing[2],
+        listing[3],
+        listing[4],
+    ]
+
+    counter = dict(counter)
+
+    plottable = {
+        options[0]: counter[options[0]],
+        options[1]: counter[options[1]],
+        options[2]: counter[options[2]],
+        options[3]: counter[options[3]],
+        options[4]: counter[options[4]],
+    }
+
+    print(plottable)
+
+    plt.bar(plottable.keys(), plottable.values(), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Favourite Openings&#39;)
+    plt.show()
+
+def save_favourite_openings(username: str, verbose: bool = False, file_name: str = None, eco_code: bool = False):
+    &#34;&#34;&#34;This will gather a user&#39;s favourite openings and save them to a JSON file.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subset or not. Defaults to False.
+        file_name (str, optional): Custom filename for the JSON file. Defaults to None.
+        eco_code (bool, optional): Whether to save the openings as an ECO Code (Example: A00) instead of a URL to the Opening on Chess.com. Defaults to False.
+    &#34;&#34;&#34;
+
+    pgns = get_pgns(username, verbose=verbose)
+
+    openings = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if eco_code is True:
+            openings.append(game.headers[&#39;ECO&#39;])
+        else:
+            openings.append(game.headers[&#39;ECOUrl&#39;])
+    
+    counter = Counter(openings)
+    counter = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
+
+    if file_name is not None:
+        json.dump(counter, open(file_name, &#39;w&#39;), indent=4)
+    else:
+        json.dump(counter, open(f&#39;{username}_openings.json&#39;, &#39;w&#39;), indent=4)
+
+def plot_rated(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Plots whether a user prefers rated or unrated chess.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subset or not. Defaults to False.
+    &#34;&#34;&#34;
+    games = get_raw_games(username, verbose=verbose)
+
+    rated = []
+
+    for game in games:
+        if game[&#39;rated&#39;] is True:
+            rated.append(&#39;Rated&#39;)
+        else:
+            rated.append(&#39;Unrated&#39;)
+    
+    counter = Counter(rated)
+
+    counter = dict(counter)
+
+    plt.bar(counter.keys(), counter.values(), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Rated vs Unrated&#39;)
+    plt.show()
+
+def plot_class(username: str, verbose: bool = False, save_file: str = None):
+    &#34;&#34;&#34;Plots what type of chess a user prefers.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subset or not. Defaults to False.
+        save_file (str, optional): Where to save.
+    &#34;&#34;&#34;
+    games = get_raw_games(username, verbose=verbose)
+
+    classes = []
+
+    for game in games:
+        classes.append(game[&#39;time_class&#39;])
+    
+    counter = Counter(classes)
+
+    counter = dict(counter)
+
+    plt.bar(counter.keys(), counter.values(), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Class of Chess&#39;)
+    if save_file is not None:
+        plt.savefig(save_file)
+    else:
+        plt.show()
+
+def save_most_common_positions(username: str, verbose: bool = False, save_file: str = None):
+    &#34;&#34;&#34;Save the most common positions in Forsyth-Edwards Notation (FEN) format. Very memory inefficient, this is why you learn C++ kids (and learn how to cry when using memory pointers)
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+        save_file (str, optional): Where to save the file, default is (username)_positions.json. Defaults to None.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    positions = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        board = game.board()
+        for move in game.mainline_moves():
+            board.push(move)
+            positions.append(board.fen())
+    
+    counter = Counter(positions)
+
+    counter = Counter(positions)
+    counter = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
+
+
+    if save_file is not None:
+        json.dump(counter, open(save_file, &#39;w&#39;), indent=4)
+    else:
+        json.dump(counter, open(f&#39;{username}_positions.json&#39;, &#39;w&#39;), indent=4)
+
+def compare(user1: str, user2: str, time_control: str, verbose: bool = False):
+    &#34;&#34;&#34;Compare two user&#39;s Elo graphs, to see who is a better learner :D.
+
+    Args:
+        user1 (str): User1&#39;s username.
+        user2 (str): User2&#39;s username.
+        time_control (str): The time control to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns1 = get_pgns(user1, verbose=verbose)
+    pgns2 = get_pgns(user2, verbose=verbose)
+
+    elos1 = []
+    elos2 = []
+
+    for pgn in pgns1:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;TimeControl&#39;] == time_control:
+            elos1.append(int(game.headers[&#39;WhiteElo&#39;]) if user1.lower() == game.headers[&#39;White&#39;].lower() else int(game.headers[&#39;BlackElo&#39;]))
+    
+    for pgn in pgns2:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;TimeControl&#39;] == time_control:
+            elos2.append(int(game.headers[&#39;WhiteElo&#39;]) if user2.lower() == game.headers[&#39;White&#39;].lower() else int(game.headers[&#39;BlackElo&#39;]))
+    
+    plt.plot(elos1, label=user1)
+    plt.plot(elos2, label=user2)
+    plt.legend()
+    plt.title(f&#39;{user1} vs {user2}&#39;)
+    plt.show()
+
+def plot_game_len(username: str, verbose: bool = False, time_control: str = None):
+    &#34;&#34;&#34;Plots the length of games played by a user.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+        time_contorl (str): What time control to check. Defaults to None.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    lengths = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if time_control is not None:
+            if game.headers[&#39;TimeControl&#39;] == time_control:
+                lengths.append(len(list(game.mainline_moves())))
+        else:
+            lengths.append(len(list(game.mainline_moves())))
+    
+    plt.hist(lengths, bins=30)
+    plt.title(f&#39;{username}\&#39;s Game Lengths&#39;)
+    plt.show()
+
+def compare_streaks(User1: str, User2: str, time_control: str = None, verbose: bool = False):
+    &#34;&#34;&#34;Compare two user&#39;s streaks.
+
+    Args:
+        User1 (str): User1&#39;s username.
+        User2 (str): User2&#39;s username.
+        time_control (str, optional): What time control to check. Defaults to None.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns1 = get_pgns(User1, verbose=verbose)
+    pgns2 = get_pgns(User2, verbose=verbose)
+
+    streaks1 = []
+    streaks2 = []
+
+    current_streak = 0
+
+    for pgn in pgns1:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+
+        if time_control is None:
+            if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                if game.headers[&#39;White&#39;].lower() == User1.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks1.append(current_streak)
+                    current_streak = 0
+            elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                if game.headers[&#39;Black&#39;].lower() == User1.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks1.append(current_streak)
+                    current_streak = 0
+            else:
+                pass
+        else:
+            if game.headers[&#39;TimeControl&#39;] == time_control:
+                if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                    if game.headers[&#39;White&#39;].lower() == User1.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks1.append(current_streak)
+                        current_streak = 0
+                elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                    if game.headers[&#39;Black&#39;].lower() == User1.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks1.append(current_streak)
+                        current_streak = 0
+    
+    current_streak = 0
+
+    for pgn in pgns2:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+
+        if time_control is None:
+            if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                if game.headers[&#39;White&#39;].lower() == User2.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks2.append(current_streak)
+                    current_streak = 0
+            elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                if game.headers[&#39;Black&#39;].lower() == User2.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks2.append(current_streak)
+                    current_streak = 0
+            else:
+                pass
+        else:
+            if game.headers[&#39;TimeControl&#39;] == time_control:
+                if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                    if game.headers[&#39;White&#39;].lower() == User2.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks2.append(current_streak)
+                        current_streak = 0
+                elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                    if game.headers[&#39;Black&#39;].lower() == User2.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks2.append(current_streak)
+                        current_streak = 0
+        
+    plt.hist(streaks1, bins=30, label=User1)
+    plt.hist(streaks2, bins=30, label=User2)
+    plt.legend()
+    plt.title(f&#39;{User1} vs {User2}&#39;)
+    plt.show()
+
+def compare_classes(User1: str, User2: str, verbose: bool = False):
+    &#34;&#34;&#34;Compare two user&#39;s classes.
+
+    Args:
+        User1 (str): User1&#39;s username.
+        User2 (str): User2&#39;s username.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    games1 = get_raw_games(User1, verbose=verbose)
+    games2 = get_raw_games(User2, verbose=verbose)
+
+    classes1 = []
+    classes2 = []
+
+    for game in games1:
+        classes1.append(game[&#39;time_class&#39;])
+    
+    for game in games2:
+        classes2.append(game[&#39;time_class&#39;])
+    
+    counter1 = Counter(classes1)
+    counter2 = Counter(classes2)
+
+    plt.bar(counter1.keys(), counter1.values(), color=&#39;green&#39;, label=User1)
+    plt.bar(counter2.keys(), counter2.values(), color=&#39;blue&#39;, label=User2)
+    plt.legend()
+    plt.title(f&#39;{User1} vs {User2}&#39;)
+    plt.show()
+
+def get_wdl(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Returns the Win/Draw/Loss of a user.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+
+    Returns:
+        dict: A dictionary of the Win/Draw/Loss.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    stats = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                stats.append(&#39;W&#39;)
+            else:
+                stats.append(&#39;L&#39;)
+        elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+            if game.headers[&#39;Black&#39;].lower() == username.lower():
+                stats.append(&#39;W&#39;)
+            else:
+                stats.append(&#39;L&#39;)
+        else:
+            stats.append(&#39;D&#39;)
+    
+    counter = Counter(stats)
+    counter = dict(counter)
+
+    return counter
+
+def get_win_rate(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Returns the win rate of a user.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+
+    Returns:
+        float: The win rate of the user.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    wins = 0
+    losses = 0
+    draws = 0
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                wins += 1
+            else:
+                losses += 1
+        elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+            if game.headers[&#39;Black&#39;].lower() == username.lower():
+                wins += 1
+            else:
+                losses += 1
+        else:
+            draws += 1
+    
+    return wins / (wins + losses + draws) * 100
+
+def get_average_game_length(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Returns the average game length of a user.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+
+    Returns:
+        float: The average game length of the user.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    lengths = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;) as f:
+            game = chess.pgn.read_game(f)
+        lengths.append(len(list(game.mainline_moves())))
+    
+    return sum(lengths) / len(lengths)
+
+def save_friends(username: str, verbose: bool = False, file_name: str = None):
+    &#34;&#34;&#34;Saves a user&#39;s friends to a JSON file.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+        file_name (str, optional): Where to save the file, default is (username)_friends.json. Defaults to None.
+    &#34;&#34;&#34;
+    url = f&#39;https://api.chess.com/pub/player/{username}/friends&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    if file_name is not None:
+        json.dump(data, open(file_name, &#39;w&#39;), indent=4)
+    else:
+        json.dump(data, open(f&#39;{username}_friends.json&#39;, &#39;w&#39;), indent=4)
+
+def create_profile(username: str, output_file: str = &#39;profile.png&#39;):
+    &#34;&#34;&#34;Creates an image of a user&#39;s profile.
+
+    Args:
+        username (str): The user to check.
+        output_file (str): Where to save the file.
+    &#34;&#34;&#34;
+    img = Image.new(&#39;RGB&#39;, (1920, 800), color=&#39;lightblue&#39;)
+
+    data = requests.get(f&#39;https://api.chess.com/pub/player/{username}&#39;, headers={&#39;User-Agent&#39;: USER_AGENT}).json()
+    
+    try:
+        img.paste(Image.open(requests.get(data[&#39;avatar&#39;], stream=True).raw), (0, 0))
+    except:
+        pass
+
+    font = ImageFont.truetype(&#39;arial.ttf&#39;, 64)
+
+    draw = ImageDraw.Draw(img)
+
+    draw.text((200, 0), f&#39;{data[&#34;username&#34;]}\&#39;s Profile&#39;, fill=&#39;black&#39;, font=font)
+
+    small_font = ImageFont.truetype(&#39;arial.ttf&#39;, 32)
+
+    draw.text((0, 215), f&#39;{data[&#39;username&#39;]}\&#39;s favourite time controls.&#39;, font=small_font, fill=&#39;black&#39;)
+
+    time_controls = plot_class(username, verbose=False, save_file=&#39;time_controls.png&#39;)
+
+    plt.close(&#39;all&#39;)
+
+    img.paste(Image.open(&#39;time_controls.png&#39;), (0, 255))
+
+    draw.text((650, 215), f&#39;{data[&#39;username&#39;]}\&#39;s 10 Minute Elo over time.&#39;, font=small_font, fill=&#39;black&#39;)
+
+    elo = plot_elo(username, &#39;600&#39;, verbose=False, save_file=&#39;elo.png&#39;)
+
+    plt.close(&#39;all&#39;)
+
+    img.paste(Image.open(&#39;elo.png&#39;), (650, 255))
+
+    draw.text((1300, 215), f&#39;{data[&#39;username&#39;]}\&#39;s Win Draw Loss.&#39;, font=small_font, fill=&#39;black&#39;)
+
+    wdl = plot_wdl(username, verbose=False, save_file=&#39;wdl.png&#39;)
+
+    plt.close(&#39;all&#39;)
+
+    img.paste(Image.open(&#39;wdl.png&#39;), (1300, 255))
+
+    img.save(output_file)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="aityz_chess.analysis.average_elo"><code class="name flex">
+<span>def <span class="ident">average_elo</span></span>(<span>username: str, verbose: bool = False, self: bool = True) ‑> float</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the average Elo of a user, or their opponents.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print subsets or not. Defaults to False.</dd>
+<dt><strong><code>self</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether it is the user's average Elo, or their opponent's. Defaults to True.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Average elo of opponent's or user.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def average_elo(username: str, verbose: bool = False, self: bool = True) -&gt; float:
+    &#34;&#34;&#34;Returns the average Elo of a user, or their opponents.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print subsets or not. Defaults to False.
+        self (bool, optional): Whether it is the user&#39;s average Elo, or their opponent&#39;s. Defaults to True.
+
+    Returns:
+        float: Average elo of opponent&#39;s or user.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    elos = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if self is True:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                elos.append(int(game.headers[&#39;WhiteElo&#39;]))
+            else:
+                elos.append(int(game.headers[&#39;BlackElo&#39;]))
+        else:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                elos.append(int(game.headers[&#39;BlackElo&#39;]))
+            else:
+                elos.append(int(game.headers[&#39;WhiteElo&#39;]))
+    
+    return sum(elos) / len(elos)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.compare"><code class="name flex">
+<span>def <span class="ident">compare</span></span>(<span>user1: str, user2: str, time_control: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compare two user's Elo graphs, to see who is a better learner :D.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>user1</code></strong> :&ensp;<code>str</code></dt>
+<dd>User1's username.</dd>
+<dt><strong><code>user2</code></strong> :&ensp;<code>str</code></dt>
+<dd>User2's username.</dd>
+<dt><strong><code>time_control</code></strong> :&ensp;<code>str</code></dt>
+<dd>The time control to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare(user1: str, user2: str, time_control: str, verbose: bool = False):
+    &#34;&#34;&#34;Compare two user&#39;s Elo graphs, to see who is a better learner :D.
+
+    Args:
+        user1 (str): User1&#39;s username.
+        user2 (str): User2&#39;s username.
+        time_control (str): The time control to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns1 = get_pgns(user1, verbose=verbose)
+    pgns2 = get_pgns(user2, verbose=verbose)
+
+    elos1 = []
+    elos2 = []
+
+    for pgn in pgns1:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;TimeControl&#39;] == time_control:
+            elos1.append(int(game.headers[&#39;WhiteElo&#39;]) if user1.lower() == game.headers[&#39;White&#39;].lower() else int(game.headers[&#39;BlackElo&#39;]))
+    
+    for pgn in pgns2:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;TimeControl&#39;] == time_control:
+            elos2.append(int(game.headers[&#39;WhiteElo&#39;]) if user2.lower() == game.headers[&#39;White&#39;].lower() else int(game.headers[&#39;BlackElo&#39;]))
+    
+    plt.plot(elos1, label=user1)
+    plt.plot(elos2, label=user2)
+    plt.legend()
+    plt.title(f&#39;{user1} vs {user2}&#39;)
+    plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.compare_classes"><code class="name flex">
+<span>def <span class="ident">compare_classes</span></span>(<span>User1: str, User2: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compare two user's classes.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>User1</code></strong> :&ensp;<code>str</code></dt>
+<dd>User1's username.</dd>
+<dt><strong><code>User2</code></strong> :&ensp;<code>str</code></dt>
+<dd>User2's username.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare_classes(User1: str, User2: str, verbose: bool = False):
+    &#34;&#34;&#34;Compare two user&#39;s classes.
+
+    Args:
+        User1 (str): User1&#39;s username.
+        User2 (str): User2&#39;s username.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    games1 = get_raw_games(User1, verbose=verbose)
+    games2 = get_raw_games(User2, verbose=verbose)
+
+    classes1 = []
+    classes2 = []
+
+    for game in games1:
+        classes1.append(game[&#39;time_class&#39;])
+    
+    for game in games2:
+        classes2.append(game[&#39;time_class&#39;])
+    
+    counter1 = Counter(classes1)
+    counter2 = Counter(classes2)
+
+    plt.bar(counter1.keys(), counter1.values(), color=&#39;green&#39;, label=User1)
+    plt.bar(counter2.keys(), counter2.values(), color=&#39;blue&#39;, label=User2)
+    plt.legend()
+    plt.title(f&#39;{User1} vs {User2}&#39;)
+    plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.compare_streaks"><code class="name flex">
+<span>def <span class="ident">compare_streaks</span></span>(<span>User1: str, User2: str, time_control: str = None, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compare two user's streaks.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>User1</code></strong> :&ensp;<code>str</code></dt>
+<dd>User1's username.</dd>
+<dt><strong><code>User2</code></strong> :&ensp;<code>str</code></dt>
+<dd>User2's username.</dd>
+<dt><strong><code>time_control</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>What time control to check. Defaults to None.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare_streaks(User1: str, User2: str, time_control: str = None, verbose: bool = False):
+    &#34;&#34;&#34;Compare two user&#39;s streaks.
+
+    Args:
+        User1 (str): User1&#39;s username.
+        User2 (str): User2&#39;s username.
+        time_control (str, optional): What time control to check. Defaults to None.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns1 = get_pgns(User1, verbose=verbose)
+    pgns2 = get_pgns(User2, verbose=verbose)
+
+    streaks1 = []
+    streaks2 = []
+
+    current_streak = 0
+
+    for pgn in pgns1:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+
+        if time_control is None:
+            if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                if game.headers[&#39;White&#39;].lower() == User1.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks1.append(current_streak)
+                    current_streak = 0
+            elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                if game.headers[&#39;Black&#39;].lower() == User1.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks1.append(current_streak)
+                    current_streak = 0
+            else:
+                pass
+        else:
+            if game.headers[&#39;TimeControl&#39;] == time_control:
+                if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                    if game.headers[&#39;White&#39;].lower() == User1.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks1.append(current_streak)
+                        current_streak = 0
+                elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                    if game.headers[&#39;Black&#39;].lower() == User1.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks1.append(current_streak)
+                        current_streak = 0
+    
+    current_streak = 0
+
+    for pgn in pgns2:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+
+        if time_control is None:
+            if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                if game.headers[&#39;White&#39;].lower() == User2.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks2.append(current_streak)
+                    current_streak = 0
+            elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                if game.headers[&#39;Black&#39;].lower() == User2.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks2.append(current_streak)
+                    current_streak = 0
+            else:
+                pass
+        else:
+            if game.headers[&#39;TimeControl&#39;] == time_control:
+                if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                    if game.headers[&#39;White&#39;].lower() == User2.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks2.append(current_streak)
+                        current_streak = 0
+                elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                    if game.headers[&#39;Black&#39;].lower() == User2.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks2.append(current_streak)
+                        current_streak = 0
+        
+    plt.hist(streaks1, bins=30, label=User1)
+    plt.hist(streaks2, bins=30, label=User2)
+    plt.legend()
+    plt.title(f&#39;{User1} vs {User2}&#39;)
+    plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.concactenate"><code class="name flex">
+<span>def <span class="ident">concactenate</span></span>(<span>username: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Concatenates all the games of a user into one PGN.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to create the PGN file for. The file is also named (username).pgn</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def concactenate(username: str) -&gt; None:
+    &#34;&#34;&#34;Concatenates all the games of a user into one PGN.
+
+    Args:
+        username (str): The user to create the PGN file for. The file is also named (username).pgn
+    &#34;&#34;&#34;
+    pgns = get_pgns(username)
+    save_file = open(f&#39;{username}.pgn&#39;, &#39;w&#39;)
+    for i in range(len(pgns)):
+        save_file.write(pgns[i])
+        save_file.write(&#39;\n\n&#39;)
+    print(&#39;Done!&#39;)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.create_profile"><code class="name flex">
+<span>def <span class="ident">create_profile</span></span>(<span>username: str, output_file: str = 'profile.png')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Creates an image of a user's profile.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>output_file</code></strong> :&ensp;<code>str</code></dt>
+<dd>Where to save the file.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_profile(username: str, output_file: str = &#39;profile.png&#39;):
+    &#34;&#34;&#34;Creates an image of a user&#39;s profile.
+
+    Args:
+        username (str): The user to check.
+        output_file (str): Where to save the file.
+    &#34;&#34;&#34;
+    img = Image.new(&#39;RGB&#39;, (1920, 800), color=&#39;lightblue&#39;)
+
+    data = requests.get(f&#39;https://api.chess.com/pub/player/{username}&#39;, headers={&#39;User-Agent&#39;: USER_AGENT}).json()
+    
+    try:
+        img.paste(Image.open(requests.get(data[&#39;avatar&#39;], stream=True).raw), (0, 0))
+    except:
+        pass
+
+    font = ImageFont.truetype(&#39;arial.ttf&#39;, 64)
+
+    draw = ImageDraw.Draw(img)
+
+    draw.text((200, 0), f&#39;{data[&#34;username&#34;]}\&#39;s Profile&#39;, fill=&#39;black&#39;, font=font)
+
+    small_font = ImageFont.truetype(&#39;arial.ttf&#39;, 32)
+
+    draw.text((0, 215), f&#39;{data[&#39;username&#39;]}\&#39;s favourite time controls.&#39;, font=small_font, fill=&#39;black&#39;)
+
+    time_controls = plot_class(username, verbose=False, save_file=&#39;time_controls.png&#39;)
+
+    plt.close(&#39;all&#39;)
+
+    img.paste(Image.open(&#39;time_controls.png&#39;), (0, 255))
+
+    draw.text((650, 215), f&#39;{data[&#39;username&#39;]}\&#39;s 10 Minute Elo over time.&#39;, font=small_font, fill=&#39;black&#39;)
+
+    elo = plot_elo(username, &#39;600&#39;, verbose=False, save_file=&#39;elo.png&#39;)
+
+    plt.close(&#39;all&#39;)
+
+    img.paste(Image.open(&#39;elo.png&#39;), (650, 255))
+
+    draw.text((1300, 215), f&#39;{data[&#39;username&#39;]}\&#39;s Win Draw Loss.&#39;, font=small_font, fill=&#39;black&#39;)
+
+    wdl = plot_wdl(username, verbose=False, save_file=&#39;wdl.png&#39;)
+
+    plt.close(&#39;all&#39;)
+
+    img.paste(Image.open(&#39;wdl.png&#39;), (1300, 255))
+
+    img.save(output_file)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.get_average_game_length"><code class="name flex">
+<span>def <span class="ident">get_average_game_length</span></span>(<span>username: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the average game length of a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The average game length of the user.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_average_game_length(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Returns the average game length of a user.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+
+    Returns:
+        float: The average game length of the user.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    lengths = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;) as f:
+            game = chess.pgn.read_game(f)
+        lengths.append(len(list(game.mainline_moves())))
+    
+    return sum(lengths) / len(lengths)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.get_pgns"><code class="name flex">
+<span>def <span class="ident">get_pgns</span></span>(<span>username: str, verbose: bool = False) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all the PGN formats of games from a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>User to grab games from.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print out the current subset. Defaults to False.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>A list of PGN formatted strings.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_pgns(username: str, verbose: bool = False) -&gt; list:
+    &#34;&#34;&#34;Gets all the PGN formats of games from a user.
+
+    Args:
+        username (str): User to grab games from.
+        verbose (bool, optional): Whether to print out the current subset. Defaults to False.
+
+    Returns:
+        list: A list of PGN formatted strings.
+    &#34;&#34;&#34;
+    return list(get_user_pgns(username, verbose=verbose))</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.get_raw_games"><code class="name flex">
+<span>def <span class="ident">get_raw_games</span></span>(<span>username: str, verbose: bool = False) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets games of a user in JSON format, with the PGN inside.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>User to grab games from.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print out the current subset. Defaults to False.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>A list of JSON formatted games.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_raw_games(username: str, verbose: bool = False) -&gt; list:
+    &#34;&#34;&#34;Gets games of a user in JSON format, with the PGN inside.
+
+    Args:
+        username (str): User to grab games from.
+        verbose (bool, optional): Whether to print out the current subset. Defaults to False.
+
+    Returns:
+        list: A list of JSON formatted games.
+    &#34;&#34;&#34;
+    url = f&#39;https://api.chess.com/pub/player/{username}/games/archives&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    subsets = response.json()
+    cached = find_subsets()
+    games = []
+    for subset in subsets[&#39;archives&#39;]:
+        sanitized_subset = sanitize_url(subset)
+        if verbose:
+            print(f&#39;Fetching Subset {subset} ...!&#39;)
+        if sanitized_subset in cached:
+            data = load_subset(sanitized_subset)
+        else:
+            response = requests.get(subset, headers={&#39;User-Agent&#39;: USER_AGENT})
+            response.raise_for_status()
+            data = response.json()
+            save_subset(data, subset)
+        for game in data[&#39;games&#39;]:
+            try:
+                games.append(game)
+            except:
+                pass
+    return games</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.get_user_pgns"><code class="name flex">
+<span>def <span class="ident">get_user_pgns</span></span>(<span>username: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all the PGNs of a user, using the caching system.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The username of the user.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the progress of the fetching. Defaults to False.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>PGNGenerator</code></dt>
+<dd>A PGNGenerator object that can be used to iterate over the PGNs.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_pgns(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Gets all the PGNs of a user, using the caching system.
+    
+    Args:
+        username (str): The username of the user.
+        verbose (bool, optional): Whether to print the progress of the fetching. Defaults to False.
+        
+    Returns:
+        PGNGenerator: A PGNGenerator object that can be used to iterate over the PGNs.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/player/{username}/games/archives&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    subsets = response.json()
+    cached = find_subsets()
+    pgns = []
+    
+    for subset in subsets[&#39;archives&#39;]:
+        sanitized_subset = sanitize_url(subset)
+        if verbose:
+            print(f&#39;Fetching Subset {subset} ...!&#39;)
+        if sanitized_subset in cached:
+            data = load_subset(sanitized_subset)
+        else:
+            response = requests.get(subset, headers={&#39;User-Agent&#39;: USER_AGENT})
+            response.raise_for_status()
+            data = response.json()
+            save_subset(data, subset)
+        for game in data[&#39;games&#39;]:
+            try:
+                pgns.append(game[&#39;pgn&#39;])
+            except:
+                pass
+    return PGNGenerator(pgns)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.get_wdl"><code class="name flex">
+<span>def <span class="ident">get_wdl</span></span>(<span>username: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the Win/Draw/Loss of a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>A dictionary of the Win/Draw/Loss.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_wdl(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Returns the Win/Draw/Loss of a user.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+
+    Returns:
+        dict: A dictionary of the Win/Draw/Loss.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    stats = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                stats.append(&#39;W&#39;)
+            else:
+                stats.append(&#39;L&#39;)
+        elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+            if game.headers[&#39;Black&#39;].lower() == username.lower():
+                stats.append(&#39;W&#39;)
+            else:
+                stats.append(&#39;L&#39;)
+        else:
+            stats.append(&#39;D&#39;)
+    
+    counter = Counter(stats)
+    counter = dict(counter)
+
+    return counter</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.get_win_rate"><code class="name flex">
+<span>def <span class="ident">get_win_rate</span></span>(<span>username: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the win rate of a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The win rate of the user.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_win_rate(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Returns the win rate of a user.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+
+    Returns:
+        float: The win rate of the user.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    wins = 0
+    losses = 0
+    draws = 0
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                wins += 1
+            else:
+                losses += 1
+        elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+            if game.headers[&#39;Black&#39;].lower() == username.lower():
+                wins += 1
+            else:
+                losses += 1
+        else:
+            draws += 1
+    
+    return wins / (wins + losses + draws) * 100</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.monte_carlo"><code class="name flex">
+<span>def <span class="ident">monte_carlo</span></span>(<span>whiteElo: int, blackElo: int, games: int) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A Monte Carlo Simulation of Chess.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>whiteElo</code></strong> :&ensp;<code>int</code></dt>
+<dd>The white player's Elo.</dd>
+<dt><strong><code>blackElo</code></strong> :&ensp;<code>int</code></dt>
+<dd>The black player's Elo.</dd>
+<dt><strong><code>games</code></strong> :&ensp;<code>int</code></dt>
+<dd>How many games to simulate.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def monte_carlo(whiteElo: int, blackElo: int, games: int) -&gt; None:
+    &#34;&#34;&#34;A Monte Carlo Simulation of Chess.
+
+    Args:
+        whiteElo (int): The white player&#39;s Elo.
+        blackElo (int): The black player&#39;s Elo.
+        games (int): How many games to simulate.
+    &#34;&#34;&#34;
+    results = []
+    win_rate = 1 / (1 + 10 ** ((whiteElo - blackElo) / 400)) * 100
+    for i in range(games):
+        chosen = random.randint(1, 100)
+        if chosen &lt;= win_rate:
+            results.append(0)
+        else:
+            results.append(1)
+    print(f&#39;Simulated {games} games!&#39;)
+    print(f&#39;User 1 ({whiteElo}) vs User 2 ({blackElo})&#39;)
+    print(f&#39;User 1 won {results.count(1)} games!&#39;)
+    print(f&#39;User 2 won {results.count(0)} games!&#39;)
+    print(f&#39;Win Rate was: {int(round(100 - win_rate, 0))}%&#39;)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.plot_class"><code class="name flex">
+<span>def <span class="ident">plot_class</span></span>(<span>username: str, verbose: bool = False, save_file: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots what type of chess a user prefers.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subset or not. Defaults to False.</dd>
+<dt><strong><code>save_file</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Where to save.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_class(username: str, verbose: bool = False, save_file: str = None):
+    &#34;&#34;&#34;Plots what type of chess a user prefers.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subset or not. Defaults to False.
+        save_file (str, optional): Where to save.
+    &#34;&#34;&#34;
+    games = get_raw_games(username, verbose=verbose)
+
+    classes = []
+
+    for game in games:
+        classes.append(game[&#39;time_class&#39;])
+    
+    counter = Counter(classes)
+
+    counter = dict(counter)
+
+    plt.bar(counter.keys(), counter.values(), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Class of Chess&#39;)
+    if save_file is not None:
+        plt.savefig(save_file)
+    else:
+        plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.plot_elo"><code class="name flex">
+<span>def <span class="ident">plot_elo</span></span>(<span>username: str, time_control: str | list, self: bool = True, verbose: bool = False, save_file=None) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots the Elo change over time of a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt>time_control (str | list): Formatted like "300" or "900+10". The Chess time control to check.</dt>
+<dt><strong><code>self</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to plot the user's Elo or not. When False, will plot the user's opponent's Elo ratings. Defaults to True.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print out which subset it is currently on or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_elo(username: str, time_control: str | list, self: bool = True, verbose: bool = False, save_file=None) -&gt; None:
+    &#34;&#34;&#34;Plots the Elo change over time of a user.
+
+    Args:
+        username (str): The user to check.
+        time_control (str | list): Formatted like &#34;300&#34; or &#34;900+10&#34;. The Chess time control to check.
+        self (bool, optional): Whether to plot the user&#39;s Elo or not. When False, will plot the user&#39;s opponent&#39;s Elo ratings. Defaults to True.
+        verbose (bool, optional): Whether to print out which subset it is currently on or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose)
+    elos = []
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;TimeControl&#39;] == time_control:
+            if self:
+                elos.append(int(game.headers[&#39;WhiteElo&#39;]) if username.lower() == game.headers[&#39;White&#39;].lower() else int(game.headers[&#39;BlackElo&#39;]))
+            else:
+                elos.append(int(game.headers[&#39;BlackElo&#39;]) if username.lower() == game.headers[&#39;White&#39;].lower() else int(game.headers[&#39;WhiteElo&#39;]))
+    plt.plot(elos)
+    plt.title(f&#39;{username}\&#39;s {time_control} Time Control Elo Graph!&#39;)
+    if save_file is not None:
+        plt.savefig(save_file)
+    else:
+        plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.plot_favourite_openings"><code class="name flex">
+<span>def <span class="ident">plot_favourite_openings</span></span>(<span>username: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plot's a users top 5 favourite ECO openings.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subset or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_favourite_openings(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Plot&#39;s a users top 5 favourite ECO openings.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subset or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    openings = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        
+        openings.append(game.headers[&#39;ECO&#39;])
+    
+    counter = Counter(openings)
+
+    listing = list(counter)
+
+    options = [
+        listing[0],
+        listing[1],
+        listing[2],
+        listing[3],
+        listing[4],
+    ]
+
+    counter = dict(counter)
+
+    plottable = {
+        options[0]: counter[options[0]],
+        options[1]: counter[options[1]],
+        options[2]: counter[options[2]],
+        options[3]: counter[options[3]],
+        options[4]: counter[options[4]],
+    }
+
+    print(plottable)
+
+    plt.bar(plottable.keys(), plottable.values(), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Favourite Openings&#39;)
+    plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.plot_game_len"><code class="name flex">
+<span>def <span class="ident">plot_game_len</span></span>(<span>username: str, verbose: bool = False, time_control: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots the length of games played by a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+<dt><strong><code>time_contorl</code></strong> :&ensp;<code>str</code></dt>
+<dd>What time control to check. Defaults to None.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_game_len(username: str, verbose: bool = False, time_control: str = None):
+    &#34;&#34;&#34;Plots the length of games played by a user.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+        time_contorl (str): What time control to check. Defaults to None.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    lengths = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if time_control is not None:
+            if game.headers[&#39;TimeControl&#39;] == time_control:
+                lengths.append(len(list(game.mainline_moves())))
+        else:
+            lengths.append(len(list(game.mainline_moves())))
+    
+    plt.hist(lengths, bins=30)
+    plt.title(f&#39;{username}\&#39;s Game Lengths&#39;)
+    plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.plot_hour"><code class="name flex">
+<span>def <span class="ident">plot_hour</span></span>(<span>username: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots with a bar graph that games are usually played in UTC.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print subsets or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_hour(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Plots with a bar graph that games are usually played in UTC.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    hours = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        hours.append(f&#39;{game.headers[&#34;StartTime&#34;][0]}{game.headers[&#34;StartTime&#34;][1]}&#39;)
+    
+    hours = Counter(hours)
+    hours = dict(hours)
+    hours = dict(sorted(hours.items()))
+
+    plt.bar(list(hours.keys()), list(hours.values()), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Average Playing Time&#39;)
+    plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.plot_rated"><code class="name flex">
+<span>def <span class="ident">plot_rated</span></span>(<span>username: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots whether a user prefers rated or unrated chess.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subset or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_rated(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Plots whether a user prefers rated or unrated chess.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subset or not. Defaults to False.
+    &#34;&#34;&#34;
+    games = get_raw_games(username, verbose=verbose)
+
+    rated = []
+
+    for game in games:
+        if game[&#39;rated&#39;] is True:
+            rated.append(&#39;Rated&#39;)
+        else:
+            rated.append(&#39;Unrated&#39;)
+    
+    counter = Counter(rated)
+
+    counter = dict(counter)
+
+    plt.bar(counter.keys(), counter.values(), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Rated vs Unrated&#39;)
+    plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.plot_streaks"><code class="name flex">
+<span>def <span class="ident">plot_streaks</span></span>(<span>username, histogram=True, time_control: str = None, verbose: bool = False) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots the win streaks held by a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>_type_</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>histogram</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to plot the streaks as a histogram or not. On False, will display as a line graph. Defaults to True.</dd>
+<dt><strong><code>time_control</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The Time Control to check streaks for. Defaults to None.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print subsets or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_streaks(username, histogram=True, time_control: str = None, verbose: bool = False) -&gt; None:
+    &#34;&#34;&#34;Plots the win streaks held by a user.
+
+    Args:
+        username (_type_): The user to check.
+        histogram (bool, optional): Whether to plot the streaks as a histogram or not. On False, will display as a line graph. Defaults to True.
+        time_control (str, optional): The Time Control to check streaks for. Defaults to None.
+        verbose (bool, optional): Whether to print subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose)
+    streaks = []
+
+    current_streak = 0
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+
+        if time_control is None:
+            if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                if game.headers[&#39;White&#39;].lower() == username.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks.append(current_streak)
+                    current_streak = 0
+            elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                if game.headers[&#39;Black&#39;].lower() == username.lower():
+                    current_streak += 1
+                else:
+                    if current_streak &gt; 1:
+                        streaks.append(current_streak)
+                    current_streak = 0
+            else:
+                pass
+        else:
+            if game.headers[&#39;TimeControl&#39;] == time_control:
+                if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+                    if game.headers[&#39;White&#39;].lower() == username.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks.append(current_streak)
+                        current_streak = 0
+                elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+                    if game.headers[&#39;Black&#39;].lower() == username.lower():
+                        current_streak += 1
+                    else:
+                        if current_streak &gt; 1:
+                            streaks.append(current_streak)
+                        current_streak = 0
+                
+    if histogram is True:
+        plt.hist(streaks, bins=30)
+        plt.title(f&#39;{username}\&#39;s streaks&#39;)
+        plt.show()
+    else:
+        plt.plot(streaks)
+        plt.title(f&#39;{username}\&#39;s streaks&#39;)
+        plt.show()
+    
+    print(f&#39;Longest Streak was: {max(streaks)}&#39;)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.plot_time_controls"><code class="name flex">
+<span>def <span class="ident">plot_time_controls</span></span>(<span>username, verbose: bool = False, save_file=None) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots time controls that the user plays.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>_type_</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_time_controls(username, verbose: bool = False, save_file=None) -&gt; None:
+    &#34;&#34;&#34;Plots time controls that the user plays.
+
+    Args:
+        username (_type_): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    controls = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        controls.append(game.headers[&#39;TimeControl&#39;])
+    
+    controls2 = []
+
+    for control in controls:
+        if control == &#39;1/86400&#39;:
+            controls2.append(&#39;Daily&#39;)
+        elif control == &#39;1/1209600&#39;:
+            controls2.append(&#39;Fortnightly&#39;)
+        elif control == &#39;1/604800&#39;:
+            controls2.append(&#39;Weekly&#39;)
+        elif control == &#39;1/259200&#39;:
+            controls2.append(&#39;Tri-Daily&#39;)
+        elif control == &#39;1/172800&#39;:
+            controls2.append(&#39;Bi-Daily&#39;)
+        else:
+            controls2.append(control)
+    
+    counter = Counter(controls2)
+
+    counter = dict(counter)
+
+    plt.bar(list(counter.keys()), list(counter.values()), color = &#39;green&#39;, width=0.4)
+    plt.title(f&#39;{username}\&#39;s Favorite Time Controls&#39;)
+    if save_file is not None:
+        plt.savefig(save_file)
+    else:
+        plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.plot_wdl"><code class="name flex">
+<span>def <span class="ident">plot_wdl</span></span>(<span>username: str, verbose: bool = False, save_file=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots Win/Draw/Loss on a bar graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print subsets or not. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_wdl(username: str, verbose: bool = False, save_file=None):
+    &#34;&#34;&#34;Plots Win/Draw/Loss on a bar graph.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print subsets or not. Defaults to False.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    stats = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if game.headers[&#39;Result&#39;] == &#39;1-0&#39;:
+            if game.headers[&#39;White&#39;].lower() == username.lower():
+                stats.append(&#39;W&#39;)
+            else:
+                stats.append(&#39;L&#39;)
+        elif game.headers[&#39;Result&#39;] == &#39;0-1&#39;:
+            if game.headers[&#39;Black&#39;].lower() == username.lower():
+                stats.append(&#39;W&#39;)
+            else:
+                stats.append(&#39;L&#39;)
+        else:
+            stats.append(&#39;D&#39;)
+    
+    counting = dict(Counter(stats))
+    
+    plt.bar(list(counting.keys()), list(counting.values()), color=&#39;green&#39;)
+    plt.title(f&#39;{username}\&#39;s Win Draw Loss&#39;)
+    if save_file is not None:
+        plt.savefig(save_file)
+    else:
+        plt.show()</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.save_favourite_openings"><code class="name flex">
+<span>def <span class="ident">save_favourite_openings</span></span>(<span>username: str, verbose: bool = False, file_name: str = None, eco_code: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This will gather a user's favourite openings and save them to a JSON file.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subset or not. Defaults to False.</dd>
+<dt><strong><code>file_name</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Custom filename for the JSON file. Defaults to None.</dd>
+<dt><strong><code>eco_code</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to save the openings as an ECO Code (Example: A00) instead of a URL to the Opening on Chess.com. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_favourite_openings(username: str, verbose: bool = False, file_name: str = None, eco_code: bool = False):
+    &#34;&#34;&#34;This will gather a user&#39;s favourite openings and save them to a JSON file.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subset or not. Defaults to False.
+        file_name (str, optional): Custom filename for the JSON file. Defaults to None.
+        eco_code (bool, optional): Whether to save the openings as an ECO Code (Example: A00) instead of a URL to the Opening on Chess.com. Defaults to False.
+    &#34;&#34;&#34;
+
+    pgns = get_pgns(username, verbose=verbose)
+
+    openings = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        if eco_code is True:
+            openings.append(game.headers[&#39;ECO&#39;])
+        else:
+            openings.append(game.headers[&#39;ECOUrl&#39;])
+    
+    counter = Counter(openings)
+    counter = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
+
+    if file_name is not None:
+        json.dump(counter, open(file_name, &#39;w&#39;), indent=4)
+    else:
+        json.dump(counter, open(f&#39;{username}_openings.json&#39;, &#39;w&#39;), indent=4)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.save_friends"><code class="name flex">
+<span>def <span class="ident">save_friends</span></span>(<span>username: str, verbose: bool = False, file_name: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Saves a user's friends to a JSON file.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+<dt><strong><code>file_name</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Where to save the file, default is (username)_friends.json. Defaults to None.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_friends(username: str, verbose: bool = False, file_name: str = None):
+    &#34;&#34;&#34;Saves a user&#39;s friends to a JSON file.
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+        file_name (str, optional): Where to save the file, default is (username)_friends.json. Defaults to None.
+    &#34;&#34;&#34;
+    url = f&#39;https://api.chess.com/pub/player/{username}/friends&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    if file_name is not None:
+        json.dump(data, open(file_name, &#39;w&#39;), indent=4)
+    else:
+        json.dump(data, open(f&#39;{username}_friends.json&#39;, &#39;w&#39;), indent=4)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.analysis.save_most_common_positions"><code class="name flex">
+<span>def <span class="ident">save_most_common_positions</span></span>(<span>username: str, verbose: bool = False, save_file: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Save the most common positions in Forsyth-Edwards Notation (FEN) format. Very memory inefficient, this is why you learn C++ kids (and learn how to cry when using memory pointers)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The user to check.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the subsets or not. Defaults to False.</dd>
+<dt><strong><code>save_file</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Where to save the file, default is (username)_positions.json. Defaults to None.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_most_common_positions(username: str, verbose: bool = False, save_file: str = None):
+    &#34;&#34;&#34;Save the most common positions in Forsyth-Edwards Notation (FEN) format. Very memory inefficient, this is why you learn C++ kids (and learn how to cry when using memory pointers)
+
+    Args:
+        username (str): The user to check.
+        verbose (bool, optional): Whether to print the subsets or not. Defaults to False.
+        save_file (str, optional): Where to save the file, default is (username)_positions.json. Defaults to None.
+    &#34;&#34;&#34;
+    pgns = get_pgns(username, verbose=verbose)
+
+    positions = []
+
+    for pgn in pgns:
+        with open(&#39;data.pgn&#39;, &#39;w&#39;) as f:
+            f.write(pgn)
+        with open(&#39;data.pgn&#39;, &#39;r&#39;) as f:
+            game = chess.pgn.read_game(f)
+        board = game.board()
+        for move in game.mainline_moves():
+            board.push(move)
+            positions.append(board.fen())
+    
+    counter = Counter(positions)
+
+    counter = Counter(positions)
+    counter = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
+
+
+    if save_file is not None:
+        json.dump(counter, open(save_file, &#39;w&#39;), indent=4)
+    else:
+        json.dump(counter, open(f&#39;{username}_positions.json&#39;, &#39;w&#39;), indent=4)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="aityz_chess" href="../index.html">aityz_chess</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="aityz_chess.analysis.average_elo" href="#aityz_chess.analysis.average_elo">average_elo</a></code></li>
+<li><code><a title="aityz_chess.analysis.compare" href="#aityz_chess.analysis.compare">compare</a></code></li>
+<li><code><a title="aityz_chess.analysis.compare_classes" href="#aityz_chess.analysis.compare_classes">compare_classes</a></code></li>
+<li><code><a title="aityz_chess.analysis.compare_streaks" href="#aityz_chess.analysis.compare_streaks">compare_streaks</a></code></li>
+<li><code><a title="aityz_chess.analysis.concactenate" href="#aityz_chess.analysis.concactenate">concactenate</a></code></li>
+<li><code><a title="aityz_chess.analysis.create_profile" href="#aityz_chess.analysis.create_profile">create_profile</a></code></li>
+<li><code><a title="aityz_chess.analysis.get_average_game_length" href="#aityz_chess.analysis.get_average_game_length">get_average_game_length</a></code></li>
+<li><code><a title="aityz_chess.analysis.get_pgns" href="#aityz_chess.analysis.get_pgns">get_pgns</a></code></li>
+<li><code><a title="aityz_chess.analysis.get_raw_games" href="#aityz_chess.analysis.get_raw_games">get_raw_games</a></code></li>
+<li><code><a title="aityz_chess.analysis.get_user_pgns" href="#aityz_chess.analysis.get_user_pgns">get_user_pgns</a></code></li>
+<li><code><a title="aityz_chess.analysis.get_wdl" href="#aityz_chess.analysis.get_wdl">get_wdl</a></code></li>
+<li><code><a title="aityz_chess.analysis.get_win_rate" href="#aityz_chess.analysis.get_win_rate">get_win_rate</a></code></li>
+<li><code><a title="aityz_chess.analysis.monte_carlo" href="#aityz_chess.analysis.monte_carlo">monte_carlo</a></code></li>
+<li><code><a title="aityz_chess.analysis.plot_class" href="#aityz_chess.analysis.plot_class">plot_class</a></code></li>
+<li><code><a title="aityz_chess.analysis.plot_elo" href="#aityz_chess.analysis.plot_elo">plot_elo</a></code></li>
+<li><code><a title="aityz_chess.analysis.plot_favourite_openings" href="#aityz_chess.analysis.plot_favourite_openings">plot_favourite_openings</a></code></li>
+<li><code><a title="aityz_chess.analysis.plot_game_len" href="#aityz_chess.analysis.plot_game_len">plot_game_len</a></code></li>
+<li><code><a title="aityz_chess.analysis.plot_hour" href="#aityz_chess.analysis.plot_hour">plot_hour</a></code></li>
+<li><code><a title="aityz_chess.analysis.plot_rated" href="#aityz_chess.analysis.plot_rated">plot_rated</a></code></li>
+<li><code><a title="aityz_chess.analysis.plot_streaks" href="#aityz_chess.analysis.plot_streaks">plot_streaks</a></code></li>
+<li><code><a title="aityz_chess.analysis.plot_time_controls" href="#aityz_chess.analysis.plot_time_controls">plot_time_controls</a></code></li>
+<li><code><a title="aityz_chess.analysis.plot_wdl" href="#aityz_chess.analysis.plot_wdl">plot_wdl</a></code></li>
+<li><code><a title="aityz_chess.analysis.save_favourite_openings" href="#aityz_chess.analysis.save_favourite_openings">save_favourite_openings</a></code></li>
+<li><code><a title="aityz_chess.analysis.save_friends" href="#aityz_chess.analysis.save_friends">save_friends</a></code></li>
+<li><code><a title="aityz_chess.analysis.save_most_common_positions" href="#aityz_chess.analysis.save_most_common_positions">save_most_common_positions</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

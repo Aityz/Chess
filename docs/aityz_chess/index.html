@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>aityz_chess API documentation</title>
+<meta name="description" content="Aityz Chess is a Python library that allows you to interact with the Chess.com API, and perform analysis." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>aityz_chess</code></h1>
+</header>
+<section id="section-intro">
+<p>Aityz Chess is a Python library that allows you to interact with the Chess.com API, and perform analysis.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Aityz Chess is a Python library that allows you to interact with the Chess.com API, and perform analysis.&#34;&#34;&#34;
+
+import requests
+from .types import *
+from .cache import *
+
+USER_AGENT = (&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) &#39;
+              &#39;Chrome/118.0.0.0 Safari/537.36 OPR/104.0.0.0&#39;)
+
+def get_user_pgns(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Gets all the PGNs of a user, using the caching system.
+    
+    Args:
+        username (str): The username of the user.
+        verbose (bool, optional): Whether to print the progress of the fetching. Defaults to False.
+        
+    Returns:
+        PGNGenerator: A PGNGenerator object that can be used to iterate over the PGNs.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/player/{username}/games/archives&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    subsets = response.json()
+    cached = find_subsets()
+    pgns = []
+    
+    for subset in subsets[&#39;archives&#39;]:
+        sanitized_subset = sanitize_url(subset)
+        if verbose:
+            print(f&#39;Fetching Subset {subset} ...!&#39;)
+        if sanitized_subset in cached:
+            data = load_subset(sanitized_subset)
+        else:
+            response = requests.get(subset, headers={&#39;User-Agent&#39;: USER_AGENT})
+            response.raise_for_status()
+            data = response.json()
+            save_subset(data, subset)
+        for game in data[&#39;games&#39;]:
+            try:
+                pgns.append(game[&#39;pgn&#39;])
+            except:
+                pass
+    return PGNGenerator(pgns)
+
+def get_profile(username: str) -&gt; Profile:
+    &#34;&#34;&#34;Gets a Profile object for a given username.
+    
+    Args:
+        username (str): The username of the user.
+        
+    Returns:
+        Profile: A Profile object that can be used with other sub-modules in Aityz Chess.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/player/{username}&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    return Profile(data)
+
+def get_titled(title: str) -&gt; List[TitledPlayer]:
+    &#34;&#34;&#34;Get a list of titled players.
+
+    Returns:
+        List[Profile]: A list of Profile objects.
+    &#34;&#34;&#34;
+    url = f&#39;https://api.chess.com/pub/titled/{title}&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    profiles = []
+    for profile in data[&#39;players&#39;]:
+        profiles.append(TitledPlayer(profile))
+    return profiles
+
+def get_daily_games(username: str) -&gt; DailyGameGenerator:
+    &#34;&#34;&#34;Gets all the daily games of a user.
+
+    Args:
+        username (str): The username of the user.
+
+    Returns:
+        DailyGameGenerator: A DailyGameGenerator object that can be used to iterate over the daily games.
+    &#34;&#34;&#34;
+    data = requests.get(f&#39;https://pub/player/{username}/games&#39;, headers={&#39;User-Agent&#39;: USER_AGENT}).json()
+
+    games_list = []
+
+    for game in data[&#39;games&#39;]:
+        games_list.append(DailyGame(game))
+    
+    return DailyGameGenerator(games_list)
+
+def get_daily_games_to_move(usename: str) -&gt; DailyGameGenerator:
+    &#34;&#34;&#34;Gets all the daily games of a user where it is the user&#39;s turn to move.
+
+    Args:
+        usename (str): The use to check for.
+
+    Returns:
+        DailyGameGenerator: A DailyGameGenerator object that can be used to iterate over the daily games.
+    &#34;&#34;&#34;
+    data = requests.get(f&#39;https://pub/player/{usename}/games/to-move&#39;, headers={&#39;User-Agent&#39;: USER_AGENT}).json()
+
+    games_list = []
+
+    for game in data[&#39;games&#39;]:
+        games_list.append(DailyGame(game))
+    
+    return DailyGameGenerator(games_list)
+
+def get_tournaments(username: str) -&gt; TournamentGenerator:
+    &#34;&#34;&#34;Gets all the tournaments of a user.
+
+    Args:
+        username (str): The username of the user.
+
+    Returns:
+        TournamentGenerator: A TournamentGenerator object that can be used to iterate over the tournaments.
+    &#34;&#34;&#34;
+    data = requests.get(f&#39;https://pub/player/{username}/tournaments&#39;, headers={&#39;User-Agent&#39;: USER_AGENT}).json()
+
+    tournaments_list = []
+
+    for tournament in data[&#39;finished&#39;]:
+        tournaments_list.append(Tournament(tournament))
+    
+    return TournamentGenerator(tournaments_list)
+
+def get_club_by_id(id: str) -&gt; Club:
+    &#34;&#34;&#34;Get a Club object by the ID.
+    
+    Args:
+        id (str): The ID of the tournament to check.
+    
+    Returns:
+        Club: A Club object from Aityz Chess.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/club/{id}&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    return Club(data)
+
+def get_club_members(club: Club) -&gt; List[PartialProfile]:
+    &#34;&#34;&#34;Get a list of members in a club.
+    
+    Args:
+        club (Club): The club to check.
+    
+    Returns:
+        List[Profile]: A list of Profile objects.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/club/{club.id}/members&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    profiles = []
+    for profile in data[&#39;all_time&#39;]:
+        profiles.append(PartialProfile(profile))
+    return profiles
+
+def get_tournament_by_id(id: str) -&gt; Tournament:
+    &#34;&#34;&#34;Get a Tournament object by the ID.
+    
+    Args:
+        id (str): The ID of the tournament to check.
+    
+    Returns:
+        Tournament: A Tournament object from Aityz Chess.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/tournament/{id}&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    return Tournament(data)
+
+def get_leaderboard() -&gt; Leaderboard:
+    &#34;&#34;&#34;Get the current leaderboard.
+    
+    Returns:
+        Leaderboard: A Leaderboard object from Aityz Chess.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/leaderboards&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    return Leaderboard(data)</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="aityz_chess.analysis" href="analysis/index.html">aityz_chess.analysis</a></code></dt>
+<dd>
+<div class="desc"><p>Useful Analysis Functions for Aityz Chess library.</p></div>
+</dd>
+<dt><code class="name"><a title="aityz_chess.cache" href="cache.html">aityz_chess.cache</a></code></dt>
+<dd>
+<div class="desc"><p>Cache System for aityz_chess.</p></div>
+</dd>
+<dt><code class="name"><a title="aityz_chess.stockfish" href="stockfish/index.html">aityz_chess.stockfish</a></code></dt>
+<dd>
+<div class="desc"><p>Functions such as Accuracy Calculation using the Stockfish Engine, for Aityz Chess.</p></div>
+</dd>
+<dt><code class="name"><a title="aityz_chess.types" href="types.html">aityz_chess.types</a></code></dt>
+<dd>
+<div class="desc"><p>This module contains the types for Aityz Chess.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="aityz_chess.get_club_by_id"><code class="name flex">
+<span>def <span class="ident">get_club_by_id</span></span>(<span>id: str) ‑> <a title="aityz_chess.types.Club" href="types.html#aityz_chess.types.Club">Club</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a Club object by the ID.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the tournament to check.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Club</code></dt>
+<dd>A Club object from Aityz Chess.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_club_by_id(id: str) -&gt; Club:
+    &#34;&#34;&#34;Get a Club object by the ID.
+    
+    Args:
+        id (str): The ID of the tournament to check.
+    
+    Returns:
+        Club: A Club object from Aityz Chess.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/club/{id}&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    return Club(data)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.get_club_members"><code class="name flex">
+<span>def <span class="ident">get_club_members</span></span>(<span>club: <a title="aityz_chess.types.Club" href="types.html#aityz_chess.types.Club">Club</a>) ‑> List[<a title="aityz_chess.types.PartialProfile" href="types.html#aityz_chess.types.PartialProfile">PartialProfile</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a list of members in a club.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>club</code></strong> :&ensp;<code>Club</code></dt>
+<dd>The club to check.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[Profile]</code></dt>
+<dd>A list of Profile objects.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_club_members(club: Club) -&gt; List[PartialProfile]:
+    &#34;&#34;&#34;Get a list of members in a club.
+    
+    Args:
+        club (Club): The club to check.
+    
+    Returns:
+        List[Profile]: A list of Profile objects.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/club/{club.id}/members&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    profiles = []
+    for profile in data[&#39;all_time&#39;]:
+        profiles.append(PartialProfile(profile))
+    return profiles</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.get_daily_games"><code class="name flex">
+<span>def <span class="ident">get_daily_games</span></span>(<span>username: str) ‑> <a title="aityz_chess.types.DailyGameGenerator" href="types.html#aityz_chess.types.DailyGameGenerator">DailyGameGenerator</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all the daily games of a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The username of the user.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>DailyGameGenerator</code></dt>
+<dd>A DailyGameGenerator object that can be used to iterate over the daily games.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_daily_games(username: str) -&gt; DailyGameGenerator:
+    &#34;&#34;&#34;Gets all the daily games of a user.
+
+    Args:
+        username (str): The username of the user.
+
+    Returns:
+        DailyGameGenerator: A DailyGameGenerator object that can be used to iterate over the daily games.
+    &#34;&#34;&#34;
+    data = requests.get(f&#39;https://pub/player/{username}/games&#39;, headers={&#39;User-Agent&#39;: USER_AGENT}).json()
+
+    games_list = []
+
+    for game in data[&#39;games&#39;]:
+        games_list.append(DailyGame(game))
+    
+    return DailyGameGenerator(games_list)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.get_daily_games_to_move"><code class="name flex">
+<span>def <span class="ident">get_daily_games_to_move</span></span>(<span>usename: str) ‑> <a title="aityz_chess.types.DailyGameGenerator" href="types.html#aityz_chess.types.DailyGameGenerator">DailyGameGenerator</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all the daily games of a user where it is the user's turn to move.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>usename</code></strong> :&ensp;<code>str</code></dt>
+<dd>The use to check for.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>DailyGameGenerator</code></dt>
+<dd>A DailyGameGenerator object that can be used to iterate over the daily games.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_daily_games_to_move(usename: str) -&gt; DailyGameGenerator:
+    &#34;&#34;&#34;Gets all the daily games of a user where it is the user&#39;s turn to move.
+
+    Args:
+        usename (str): The use to check for.
+
+    Returns:
+        DailyGameGenerator: A DailyGameGenerator object that can be used to iterate over the daily games.
+    &#34;&#34;&#34;
+    data = requests.get(f&#39;https://pub/player/{usename}/games/to-move&#39;, headers={&#39;User-Agent&#39;: USER_AGENT}).json()
+
+    games_list = []
+
+    for game in data[&#39;games&#39;]:
+        games_list.append(DailyGame(game))
+    
+    return DailyGameGenerator(games_list)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.get_leaderboard"><code class="name flex">
+<span>def <span class="ident">get_leaderboard</span></span>(<span>) ‑> <a title="aityz_chess.types.Leaderboard" href="types.html#aityz_chess.types.Leaderboard">Leaderboard</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the current leaderboard.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Leaderboard</code></dt>
+<dd>A Leaderboard object from Aityz Chess.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_leaderboard() -&gt; Leaderboard:
+    &#34;&#34;&#34;Get the current leaderboard.
+    
+    Returns:
+        Leaderboard: A Leaderboard object from Aityz Chess.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/leaderboards&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    return Leaderboard(data)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.get_profile"><code class="name flex">
+<span>def <span class="ident">get_profile</span></span>(<span>username: str) ‑> <a title="aityz_chess.types.Profile" href="types.html#aityz_chess.types.Profile">Profile</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets a Profile object for a given username.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The username of the user.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Profile</code></dt>
+<dd>A Profile object that can be used with other sub-modules in Aityz Chess.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_profile(username: str) -&gt; Profile:
+    &#34;&#34;&#34;Gets a Profile object for a given username.
+    
+    Args:
+        username (str): The username of the user.
+        
+    Returns:
+        Profile: A Profile object that can be used with other sub-modules in Aityz Chess.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/player/{username}&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    return Profile(data)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.get_titled"><code class="name flex">
+<span>def <span class="ident">get_titled</span></span>(<span>title: str) ‑> List[<a title="aityz_chess.types.TitledPlayer" href="types.html#aityz_chess.types.TitledPlayer">TitledPlayer</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a list of titled players.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[Profile]</code></dt>
+<dd>A list of Profile objects.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_titled(title: str) -&gt; List[TitledPlayer]:
+    &#34;&#34;&#34;Get a list of titled players.
+
+    Returns:
+        List[Profile]: A list of Profile objects.
+    &#34;&#34;&#34;
+    url = f&#39;https://api.chess.com/pub/titled/{title}&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    profiles = []
+    for profile in data[&#39;players&#39;]:
+        profiles.append(TitledPlayer(profile))
+    return profiles</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.get_tournament_by_id"><code class="name flex">
+<span>def <span class="ident">get_tournament_by_id</span></span>(<span>id: str) ‑> <a title="aityz_chess.types.Tournament" href="types.html#aityz_chess.types.Tournament">Tournament</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a Tournament object by the ID.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the tournament to check.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Tournament</code></dt>
+<dd>A Tournament object from Aityz Chess.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tournament_by_id(id: str) -&gt; Tournament:
+    &#34;&#34;&#34;Get a Tournament object by the ID.
+    
+    Args:
+        id (str): The ID of the tournament to check.
+    
+    Returns:
+        Tournament: A Tournament object from Aityz Chess.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/tournament/{id}&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    data = response.json()
+    return Tournament(data)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.get_tournaments"><code class="name flex">
+<span>def <span class="ident">get_tournaments</span></span>(<span>username: str) ‑> <a title="aityz_chess.types.TournamentGenerator" href="types.html#aityz_chess.types.TournamentGenerator">TournamentGenerator</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all the tournaments of a user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The username of the user.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>TournamentGenerator</code></dt>
+<dd>A TournamentGenerator object that can be used to iterate over the tournaments.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tournaments(username: str) -&gt; TournamentGenerator:
+    &#34;&#34;&#34;Gets all the tournaments of a user.
+
+    Args:
+        username (str): The username of the user.
+
+    Returns:
+        TournamentGenerator: A TournamentGenerator object that can be used to iterate over the tournaments.
+    &#34;&#34;&#34;
+    data = requests.get(f&#39;https://pub/player/{username}/tournaments&#39;, headers={&#39;User-Agent&#39;: USER_AGENT}).json()
+
+    tournaments_list = []
+
+    for tournament in data[&#39;finished&#39;]:
+        tournaments_list.append(Tournament(tournament))
+    
+    return TournamentGenerator(tournaments_list)</code></pre>
+</details>
+</dd>
+<dt id="aityz_chess.get_user_pgns"><code class="name flex">
+<span>def <span class="ident">get_user_pgns</span></span>(<span>username: str, verbose: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets all the PGNs of a user, using the caching system.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code></dt>
+<dd>The username of the user.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to print the progress of the fetching. Defaults to False.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>PGNGenerator</code></dt>
+<dd>A PGNGenerator object that can be used to iterate over the PGNs.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user_pgns(username: str, verbose: bool = False):
+    &#34;&#34;&#34;Gets all the PGNs of a user, using the caching system.
+    
+    Args:
+        username (str): The username of the user.
+        verbose (bool, optional): Whether to print the progress of the fetching. Defaults to False.
+        
+    Returns:
+        PGNGenerator: A PGNGenerator object that can be used to iterate over the PGNs.&#34;&#34;&#34;
+    
+    url = f&#39;https://api.chess.com/pub/player/{username}/games/archives&#39;
+    response = requests.get(url, headers={&#39;User-Agent&#39;: USER_AGENT})
+    response.raise_for_status()
+    subsets = response.json()
+    cached = find_subsets()
+    pgns = []
+    
+    for subset in subsets[&#39;archives&#39;]:
+        sanitized_subset = sanitize_url(subset)
+        if verbose:
+            print(f&#39;Fetching Subset {subset} ...!&#39;)
+        if sanitized_subset in cached:
+            data = load_subset(sanitized_subset)
+        else:
+            response = requests.get(subset, headers={&#39;User-Agent&#39;: USER_AGENT})
+            response.raise_for_status()
+            data = response.json()
+            save_subset(data, subset)
+        for game in data[&#39;games&#39;]:
+            try:
+                pgns.append(game[&#39;pgn&#39;])
+            except:
+                pass
+    return PGNGenerator(pgns)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="aityz_chess.analysis" href="analysis/index.html">aityz_chess.analysis</a></code></li>
+<li><code><a title="aityz_chess.cache" href="cache.html">aityz_chess.cache</a></code></li>
+<li><code><a title="aityz_chess.stockfish" href="stockfish/index.html">aityz_chess.stockfish</a></code></li>
+<li><code><a title="aityz_chess.types" href="types.html">aityz_chess.types</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="aityz_chess.get_club_by_id" href="#aityz_chess.get_club_by_id">get_club_by_id</a></code></li>
+<li><code><a title="aityz_chess.get_club_members" href="#aityz_chess.get_club_members">get_club_members</a></code></li>
+<li><code><a title="aityz_chess.get_daily_games" href="#aityz_chess.get_daily_games">get_daily_games</a></code></li>
+<li><code><a title="aityz_chess.get_daily_games_to_move" href="#aityz_chess.get_daily_games_to_move">get_daily_games_to_move</a></code></li>
+<li><code><a title="aityz_chess.get_leaderboard" href="#aityz_chess.get_leaderboard">get_leaderboard</a></code></li>
+<li><code><a title="aityz_chess.get_profile" href="#aityz_chess.get_profile">get_profile</a></code></li>
+<li><code><a title="aityz_chess.get_titled" href="#aityz_chess.get_titled">get_titled</a></code></li>
+<li><code><a title="aityz_chess.get_tournament_by_id" href="#aityz_chess.get_tournament_by_id">get_tournament_by_id</a></code></li>
+<li><code><a title="aityz_chess.get_tournaments" href="#aityz_chess.get_tournaments">get_tournaments</a></code></li>
+<li><code><a title="aityz_chess.get_user_pgns" href="#aityz_chess.get_user_pgns">get_user_pgns</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
